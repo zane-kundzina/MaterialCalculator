@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace MaterialCalculator.Data
+namespace MaterialCalculator.BLL
 {
     public class Calculator
     {
-        public List<Material> materials { get; set; } = new List<Material>();
+        //public List<Material> materials { get; set; } = new List<Material>();
 
         // does it needs any specific constructor?
 
@@ -15,11 +15,11 @@ namespace MaterialCalculator.Data
             // saves/exports current list of materials (optionally) and clears it afterwards; 
         }
 
-        public void AddMaterial(Material material)
-        {
-            // method code....
-            materials.Add(material);
-        }
+        //public void AddMaterial(Material material)
+        //{
+        //    // method code....
+        //    materials.Add(material);
+        //}
 
         public double CalculateMaterialAmount()
         {

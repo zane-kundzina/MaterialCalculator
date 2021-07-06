@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace MaterialCalculator.Data
+namespace MaterialCalculator.UI.Models
 {
-    public class Material
+    public class MaterialModel
     {
         public string Type { get; private set; }
         public string Size { get; private set; }
@@ -12,14 +13,6 @@ namespace MaterialCalculator.Data
         public double NumberOfPieces { get; set; }
         public double WeightPerUnitKg { get; private set; }
 
-        public Material(string type, string size, double pieceSize, double weightPerUnitKg )
-        {
-            Type = type;
-            Size = size;
-            PieceSize = pieceSize;
-            WeightPerUnitKg = weightPerUnitKg;
-        }
-
-
+        
     }
 }
