@@ -7,6 +7,8 @@ namespace MaterialCalculator.Data
     {
         public List<Material> materials { get; set; } = new List<Material>();
 
+        // does it needs any specific constructor?
+
         public void NewMaterialList()
         {
             // method code....
