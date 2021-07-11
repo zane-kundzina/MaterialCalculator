@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MaterialCalculator.Data\MaterialCalculator.BLL.csproj" />
+    <ProjectReference Include="..\MaterialCalculator.Entity\MaterialCalculator.Entity.csproj" />
   </ItemGroup>
 
 </Project>
