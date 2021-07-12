@@ -46,7 +46,7 @@ namespace MaterialCalculator.UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Material}/{action=Index}");
             });
         }
     }

@@ -11,7 +11,7 @@
     <br />
 </div>
 
-
+<p>size: @Model.Size
 <div class="container">
 
     <div class="container">
@@ -72,7 +72,7 @@
             </div>
             <div class="col">
                 <!-- Material Size selection cell -->
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <select id="dropDownSize" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
                     <option selected> Cose Size </option>
 
                     <!--Sizes available for every chosen material type have to be shown from data base -->
@@ -80,7 +80,7 @@
                     <option value="1">25x2000x12000</option>
                     <option value="2"></option>
                     <option value="3"></option>
-                    <option value=@Model.Size></option>
+                    <option value=4>@Model.Size</option>
 
                 </select>
             </div>

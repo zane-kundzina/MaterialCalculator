@@ -22,7 +22,7 @@ namespace MaterialCalculator.UI.Controllers
             MaterialCalculatorActions materialActions = new MaterialCalculatorActions();
             var sizes = materialActions.GetMaterialSizes(materialModel.Type);
 
-            materialModel.Size = sizes.FirstOrDefault();
+            materialModel.Size = "11";// sizes.FirstOrDefault();
             
 
             return View(materialModel);
