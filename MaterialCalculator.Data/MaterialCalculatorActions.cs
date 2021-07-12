@@ -39,6 +39,17 @@ namespace MaterialCalculator.BLL
 
             List<MaterialDto> materials = new List<MaterialDto>(); // material list in data base???
 
+            //Mocked list
+            for(int i = 5; i>0; i++)
+            {
+                materials.Add(new MaterialDto()
+                {
+                    Id = i,
+                    NumberOfPieces = i
+                });
+            }
+            //Mocked list
+
             foreach (var m in materials)
             {
                 var material = materials.FirstOrDefault(m => m.Type == type);

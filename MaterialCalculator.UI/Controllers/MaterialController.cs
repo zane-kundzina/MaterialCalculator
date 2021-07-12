@@ -19,6 +19,12 @@ namespace MaterialCalculator.UI.Controllers
                 // UI is waiting for input...;
             };
 
+            MaterialCalculatorActions materialActions = new MaterialCalculatorActions();
+            var sizes = materialActions.GetMaterialSizes(materialModel.Type);
+
+            materialModel.Size = sizes.FirstOrDefault();
+            
+
             return View(materialModel);
         }
 
@@ -49,7 +55,6 @@ namespace MaterialCalculator.UI.Controllers
             // is Id necessary at all in this case?
             materialModel.Id = materialActions.GetMaterialId(materialDto.Type, materialDto.Size);
             
-            var sizes = materialActions.GetMaterialSizes(materialModel.Type);
             // materialModel.Size = one from dropdown List "Size" that user choses;
 
             materialModel.PieceSize = materialActions.GetPieceSize(materialModel.Type);
