@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MaterialCalculator.BLL;
 using MaterialCalculator.Entity;
+using MaterialCalculator.DAL;
 
 namespace MaterialCalculator.BLL
 {
@@ -12,44 +13,60 @@ namespace MaterialCalculator.BLL
     {
         // place for logic; entity objects are used in BLL; methods        
 
+        
+
         List<double> materialWeightsPerRow = new List<double>();
         const double maxLoadWeight = 24;
 
-        public int GetMaterialId(string type, string size)
+        public List<string> GetMaterialType()
         {
-            // according to material Type and Size from UI, methods finds material in data base;
-            // Not sure if following code points to data base objects, data base will be in DAL....... how to do it?
-            // not sure if finding Id is necessary at all, because Type&size combination is unique and given by user,
-            // according to this info material can be found in database;
+            var repo = new MaterialCalculatorRepository();
+            
+            
+            
+            // method have to offer list of available material types in dropdown list
+            // list in UI "Type" for further choice;
+            // How to get data from data base into dropdown list in UI???            
 
-            List<MaterialDto> materials = new List<MaterialDto>(); // material list in data base???
+            // SQL query? to get list of types available?
 
-            var material = materials.FirstOrDefault(m => m.Type == type && m.Size == size); // according to type and size Id can be found in the list;
-            var id = material.Id;            
+            //SELECT DISTINCT Type
+            //FROM Materials
 
-            return id; 
+            //List<MaterialDto> materials = new List<MaterialDto>(); // should be material list from data base, How/where to write it???
+            //List<string> types = new List<string>();    // lsit of sizes availablo for type chosed should appear in dropdown list "Size" to chose it in UI;
+
+            //foreach (var material in materials)
+            //{                
+            //    var type = material.Type;
+            //    types.Add(type);
+            //}  
+
+
+
+            return repo.GetMaterialType();
+            // list of sizes should be displayed in dropdown list in UI;
+            // how to do it?
         }
+
         public List<string> GetMaterialSizes(string type)
         {
             // according to material.Type choice from UI, method have to offer list of available material sizes in dropdown
-            // list in UI "Size" for further choice;
-            // Not sure if following code points to data base objects, data base will be in DAL....... how to do it?
+            // list in UI "Size" dropdown list for further choice;
+            // how to get data from db in UI in dropdown list?
 
-            List<string> sizes = new List<string>();    // lsit of sizes availablo for type chosed should appear in dropdown list "Size" to chose it in UI;
+            // SQL query? to get list of types available? How/where to write in?
 
-            List<MaterialDto> materials = new List<MaterialDto>(); // material list in data base???
+            // SELECT Size
+            // FROM Materials
+            // WHERE Type = “type chosed by user from dropdown list”
 
-            //Mocked list
-            for(int i = 0; i>0; i++)
-            {
-                materials.Add(new MaterialDto()
-                {
-                    Id = i,
-                    NumberOfPieces = i
-                });
-            }
-            //Mocked list
+            List<MaterialDto> materials = new List<MaterialDto>(); // how to get material list from data base???
+            List<string> sizes = new List<string>();    // list of sizes availablo for type chosed should appear in dropdown list "Size" to chose it in UI;
 
+            // is following foreach loop necessary at all if SQL query is executed and appropriate sizes found? how to add them to the list what to return
+            // and show in dropdown list?
+            
             foreach (var m in materials)
             {
                 var material = materials.FirstOrDefault(m => m.Type == type);
@@ -66,13 +83,17 @@ namespace MaterialCalculator.BLL
         {
             // according to material.Type choice from UI, method have to offer piece size for this material type from data base
 
+            // SELECT PieceSize
+            // FROM Materials
+            // WHERE Type = “type chosed by user from dropdown list”
+
             List<MaterialDto> materials = new List<MaterialDto>(); // material list in data base???
 
             var material = materials.FirstOrDefault(m => m.Type == type);
             var pieceSize = material.PieceSize;
 
             return pieceSize;
-            // pieceSize should be displayed in UI for material type chosen;
+            // pieceSize should be displayed in UI for material type chosen - how to do it?
             // how to do it?
         }
 
@@ -86,16 +107,20 @@ namespace MaterialCalculator.BLL
             return numberOfPieces;
         }
 
-        public double GetKgPerUnit(string type, string size)
+        public double GetWeightPerUnit(string type, string size)
         {
             // according to material.Type and material.Size choice from UI, method have to find weight of this material per unit from data base
 
-            List<MaterialDto> materials = new List<MaterialDto>(); // material list in data base???
+            // SELECT WeightPerUnit
+            // FROM Materials
+            // WHERE Type = “type chosed by user from dropdown list” && Size = “size chosed by user from dropdown list”
+
+            List<MaterialDto> materials = new List<MaterialDto>(); // material list from data base???
 
             var material = materials.FirstOrDefault(m => m.Type == type && m.Size == size);
-            var kgPerUnit = material.WeightPerUnitKg;
+            var weightPerUnit = material.WeightPerUnit;
 
-            return kgPerUnit;
+            return weightPerUnit;
         }
 
         public double CalculateAmountOfMaterialUnits(string type, string size, int numberOfPieces)
@@ -111,13 +136,15 @@ namespace MaterialCalculator.BLL
 
         public double CalculateMaterialWeight(string type, string size, int numberOfPieces)
         {
+            // should there be a "current material" as object which to work with in each record line?
+            
             List<MaterialDto> materials = new List<MaterialDto>(); // material list in data base???
-            MaterialDto material = new MaterialDto();            
+            MaterialDto currentMaterial = new MaterialDto();            
 
-            material = materials.FirstOrDefault(m => m.Type == type && m.Size == size);
+            currentMaterial = materials.FirstOrDefault(m => m.Type == type && m.Size == size);
             double amountOfMaterialUnits = CalculateAmountOfMaterialUnits(type, size, numberOfPieces);
 
-            double materialWeight = amountOfMaterialUnits * material.WeightPerUnitKg;
+            double materialWeight = amountOfMaterialUnits * currentMaterial.WeightPerUnit;
             // this weight per row should be added to total material weight;
             materialWeightsPerRow.Add(materialWeight);
 
@@ -142,14 +169,14 @@ namespace MaterialCalculator.BLL
         {                         
             var totalWeight = CalculateTotalWeight(materialWeightsPerRow);
             double percentageOfLoad = totalWeight / maxLoadWeight;
-            // result should be formatted as % ans displayed in UI;
+            // result should be formatted as % ans displayed in UI - how to do this?
 
             return percentageOfLoad;
         }
 
         public string IsLoadFull(List<double> materialWeightsPerRow)
         {
-            // there should be warining Message displayed on the screen that Load is exceeding 1 truck;
+            // there should be warning Message displayed on the screen that Load is exceeding 1 truck;
             string warningMessage = "Attention - load weight exceeds allowed weight per 1 truck!";
             var totalWeight = CalculateTotalWeight(materialWeightsPerRow);
             if (totalWeight > maxLoadWeight)
@@ -163,6 +190,8 @@ namespace MaterialCalculator.BLL
             
         }
 
+
+        // it is not necessary at the moment
         public void SaveMaterialList()
         {
             // saves/exports current list of materials (optionally) and clears it afterwards; 

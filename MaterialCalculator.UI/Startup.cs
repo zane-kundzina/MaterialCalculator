@@ -1,3 +1,4 @@
+using MaterialCalculator.DAL.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -46,8 +47,14 @@ namespace MaterialCalculator.UI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Material}/{action=Index}");
+                    //pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Material}/{action=Index}");                    
             });
+
+            using (var context = new MaterialCalculatorDBContext())
+            {
+                context.Database.EnsureCreated();
+            }
         }
     }
 }
