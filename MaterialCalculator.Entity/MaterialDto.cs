@@ -8,8 +8,9 @@ namespace MaterialCalculator.Entity
         public string Type { get; set; }
         public string Size { get; set; }
         public double PieceSize { get; set; }
+        public double WeightPerUnit { get; set; }
         public double NumberOfPieces { get; set; }
-        public double pricePerTon { get; set; }
-        public double WeightPerUnitKg { get; set; }
+        public double PricePerTon { get; set; }
+       
     }
 }

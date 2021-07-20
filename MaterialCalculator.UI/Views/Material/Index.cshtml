@@ -1,4 +1,4 @@
-﻿@model MaterialViewModel
+﻿@model List<string>
 
 @{
     ViewData["Title"] = "Home Page";
@@ -17,7 +17,7 @@
     <div class="container">
         <div class="row row-cols-auto">
             <div class="col">
-                <p class="text-sm-center">Material Type</p>
+                <p>Material Type</p>
             </div>
             <div class="col">
                 <p class="text-sm-center">Material Size</p>
@@ -40,12 +40,7 @@
             <div class="col">
                 <p class="text-sm-center"> EUR </p>
             </div>
-            <div class="col">
-                <p class="text-sm-center">Project</p>
-            </div>
-            <div class="col">
-                <p class="text-sm-center">Comments</p>
-            </div>
+
         </div>
     </div>
 
@@ -53,9 +48,20 @@
         <div class="row row-cols-auto">
             <div class="col">
                 <!-- Material Type selection cell -->
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownType">
                     <option selected> Chose Type </option>
-                    <option value="1">Sheet</option>
+                    <!-- should be given list of types from db-->
+                    @if (Model != null)
+                    {
+                        @foreach (var item in Model)
+                        {
+                            int i = 13;
+                            <option value="@i">item</option>
+                            i++;
+                        }
+                    }
+
+                    <!-- <option value="1">Sheet</option>
                     <option value="2">SHS</option>
                     <option value="3">RHS</option>
                     <option value="4">CHS</option>
@@ -67,13 +73,13 @@
                     <option value="10">Round Bar</option>
                     <option value="11">RHS</option>
                     <option value="12">UPE</option>
-                    <option value="13">UPN</option>
+                    <option value="13">UPN</option> -->
                 </select>
             </div>
             <div class="col">
                 <!-- Material Size selection cell -->
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                    <option selected> Cose Size </option>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownSize">
+                    <option selected> Chose Size </option>
 
                     <!--Sizes available for every chosen material type have to be shown from data base -->
 
@@ -81,45 +87,39 @@
                     <option value="2"></option>
                     <option value="3"></option>
 
+
                 </select>
             </div>
             <div class="col">
-                <!-- m2/m per piece - system shows from data base -->
-                <p class="text-sm-center"> 0 </p>
+                <!-- PieceSize - system shows from data base according to type and size chosen -->
+                <p class="text-sm-center" id="pieceSize"> 0 </p>
             </div>
             <div class="col">
                 <!-- pieces - user inputs number of pieces -->
-                <input type="number" id="quantity" name="quantity" min="1" max="200">
+                <input type="number" id="numberOfPieces" name="quantity" min="1" max="200">
             </div>
             <div class="col">
                 <!-- m2 or m - system calculates total amount of material m or m2 -->
-                <p class="text-sm-center"> 0 </p>
+                <p class="text-sm-center" id="totalAmountOfUnits"> 0 </p>
             </div>
             <div class="col">
                 <!-- kg - system calculates amount of material kg -->
-                <p class="text-sm-center"> 0 </p>
+                <p class="text-sm-center" id="weightPerRow"> 0 </p>
             </div>
             <div class="col">
                 <!-- EUR/tn - user inputs price of material EUR/tn -->
-                <input type="number" id="quantity" name="quantity" min="1" max="15000">
+                <input type="number" id="pricePerTon" name="quantity" min="1" max="15000">
             </div>
             <div class="col">
                 <!-- EUR - system calculates total EUR per material amount -->
-                <p class="text-sm-center"> 0 </p>
+                <p class="text-sm-center" id="sumTotalEur"> 0 </p>
             </div>
-            <div class="col">
-                <!-- Project - user inputs project number or name -->
-                <input class="input" type="text" id="projectName" name="projectName">
-            </div>
-            <div class="col">
-                <!-- Comments - user inputs comments if there are any -->
-                <input class="input" type="text" id="comment" name="comment">
-            </div>
+
         </div>
     </div>
-    
+
     <div>
-        <button type="button" class="btn btn-success">New row</button>
+        <button type="button" class="btn btn-success" id="btnNewRow" onclick="" >New row</button>
     </div>
 </div>
 

@@ -14,12 +14,11 @@ namespace MaterialCalculator.UI.Controllers
     {
         public IActionResult Index()
         {
-            MaterialViewModel materialModel = new MaterialViewModel()
-            {
-                // UI is waiting for input...;
-            };
+            var actions = new MaterialCalculatorActions();
 
-            return View(materialModel);
+            var listOfTypes = actions.GetMaterialType();  
+
+            return View(listOfTypes);
         }
 
         public IActionResult GetMaterialInfo(string type, string size)
@@ -40,21 +39,21 @@ namespace MaterialCalculator.UI.Controllers
                 Type = materialModel.Type,
                 Size = materialModel.Size,
                 PieceSize = materialModel.PieceSize,
-                WeightPerUnitKg = materialModel.WeightPerUnitKg
+                WeightPerUnit = materialModel.WeightPerUnit
 
             };
 
             MaterialCalculatorActions materialActions = new MaterialCalculatorActions();            
             
             // is Id necessary at all in this case?
-            materialModel.Id = materialActions.GetMaterialId(materialDto.Type, materialDto.Size);
+            //materialModel.Id = materialActions.GetMaterialId(materialDto.Type, materialDto.Size);
             
             var sizes = materialActions.GetMaterialSizes(materialModel.Type);
             // materialModel.Size = one from dropdown List "Size" that user choses;
 
             materialModel.PieceSize = materialActions.GetPieceSize(materialModel.Type);
 
-            materialModel.WeightPerUnitKg = materialActions.GetKgPerUnit(materialDto.Type, materialDto.Size);
+            //materialModel.WeightPerUnitKg = materialActions.GetKgPerUnit(materialDto.Type, materialDto.Size);
 
             return View(materialModel);
         }
