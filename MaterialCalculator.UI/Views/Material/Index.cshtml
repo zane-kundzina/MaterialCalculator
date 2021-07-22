@@ -4,124 +4,116 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="container text-center">
-    <h1 class="display-4">Steel Material Load Calculator</h1>
-    <p></p>
-    <br />
-    <br />
-</div>
+<form method="post" asp-action="Create">
+    <div class="border p-3">
+        <div class="form-group row text-center">
+            <h2 class="text-black-50 pl-3 ">Steel Material Calculator</h2>
+        </div>
 
-
-<div class="container">
-
-    <div class="container">
-        <div class="row row-cols-auto">
-            <div class="col">
-                <p>Material Type</p>
+        <div class="row">
+            <div class="col" width="15%">
+                <p class="text-sm-center">Material Type</p>
             </div>
-            <div class="col">
+            <div class="col" width="15%">
                 <p class="text-sm-center">Material Size</p>
             </div>
-            <div class="col">
+            <div class="col" width="11%">
                 <p class="text-sm-center">Piece size m2/m</p>
             </div>
-            <div class="col">
+            <div class="col" width="11%">
                 <p class="text-sm-center">Pieces</p>
             </div>
-            <div class="col">
+            <div class="col" width="12%">
                 <p class="text-sm-center">m2/m total</p>
             </div>
-            <div class="col">
-                <p class="text-sm-center"> kg </p>
+            <div class="col" width="12%">
+                <p class="text-sm-center"> Tn </p>
             </div>
-            <div class="col">
+            <div class="col" width="12%">
                 <p class="text-sm-center">EUR/tn</p>
             </div>
-            <div class="col">
+            <div class="col" width="12%">
                 <p class="text-sm-center"> EUR </p>
             </div>
 
         </div>
-    </div>
 
-    <div class="container">
-        <div class="row row-cols-auto">
-            <div class="col">
+
+
+        <div class="row">
+            <div class="col" width="15%">
                 <!-- Material Type selection cell -->
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownType">
                     <option selected> Chose Type </option>
-                    <!-- should be given list of types from db-->
+                    <!-- list of types from db in dropdown list -->
                     @if (Model != null)
                     {
-                        @foreach (var item in Model)
+                        @for (int i = 0; i < Model.Count - 1; i++)
                         {
-                            int i = 13;
-                            <option value="@i">item</option>
-                            i++;
+                            @if (Model[i] != Model[i + 1])
+                            {
+                                <option value="@i">@Model[i]</option>
+                            }
                         }
+
                     }
 
-                    <!-- <option value="1">Sheet</option>
-                    <option value="2">SHS</option>
-                    <option value="3">RHS</option>
-                    <option value="4">CHS</option>
-                    <option value="5">HEA</option>
-                    <option value="6">HEB</option>
-                    <option value="7">IPE</option>
-                    <option value="8">L</option>
-                    <option value="9">Flat Bar</option>
-                    <option value="10">Round Bar</option>
-                    <option value="11">RHS</option>
-                    <option value="12">UPE</option>
-                    <option value="13">UPN</option> -->
+
+
                 </select>
             </div>
-            <div class="col">
+            <div class="col" width="15%">
                 <!-- Material Size selection cell -->
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownSize">
                     <option selected> Chose Size </option>
 
-                    <!--Sizes available for every chosen material type have to be shown from data base -->
+                    <!--Sizes available for every chosen material type have to be shown from data base
+                    Size in dropdown list = size in db where id "dropdownType" chosen == Type ==> list of sizes -->
 
-                    <option value="1">25x2000x12000</option>
-                    <option value="2"></option>
-                    <option value="3"></option>
+
 
 
                 </select>
             </div>
             <div class="col">
                 <!-- PieceSize - system shows from data base according to type and size chosen -->
+
+
+
                 <p class="text-sm-center" id="pieceSize"> 0 </p>
             </div>
-            <div class="col">
+            <div class="col text-center" width="11%">
                 <!-- pieces - user inputs number of pieces -->
-                <input type="number" id="numberOfPieces" name="quantity" min="1" max="200">
+                <input type="number" class="text-sm-center" id="numberOfPieces" name="quantity" min="1" max="200">
             </div>
-            <div class="col">
+            <div class="col" width="11%">
                 <!-- m2 or m - system calculates total amount of material m or m2 -->
                 <p class="text-sm-center" id="totalAmountOfUnits"> 0 </p>
             </div>
-            <div class="col">
+            <div class="col" width="12%">
                 <!-- kg - system calculates amount of material kg -->
                 <p class="text-sm-center" id="weightPerRow"> 0 </p>
             </div>
-            <div class="col">
+            <div class="col" width="12%">
                 <!-- EUR/tn - user inputs price of material EUR/tn -->
-                <input type="number" id="pricePerTon" name="quantity" min="1" max="15000">
+                <input type="number" class="text-sm-center" id="pricePerTon" name="quantity" min="1" max="15000">
             </div>
-            <div class="col">
+            <div class="col" width="12%">
                 <!-- EUR - system calculates total EUR per material amount -->
                 <p class="text-sm-center" id="sumTotalEur"> 0 </p>
             </div>
 
         </div>
-    </div>
 
-    <div>
-        <button type="button" class="btn btn-success" id="btnNewRow" onclick="" >New row</button>
+        <div class="row pt-4">
+            <div class="col-12 text-right">  
+                <a asp-controller="Material" asp-action="" class="btn btn-success">New row</a>
+            </div>            
+        </div>
+        <br />
+
     </div>
-</div>
+</form>
 
 
 
