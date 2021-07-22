@@ -43,7 +43,7 @@
         <div class="row">
             <div class="col" width="15%">
                 <!-- Material Type selection cell -->
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownType">
+                <select class="form-select" aria-label="Default select example" id="dropdownType">
                     <option selected> Chose Type </option>
                     <!-- list of types from db in dropdown list -->
                     @if (Model != null)
@@ -57,47 +57,48 @@
                         }
 
                     }
-
-
-
                 </select>
             </div>
+
             <div class="col" width="15%">
                 <!-- Material Size selection cell -->
-                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownSize">
+                <select class="form-select" aria-label="Default select example" id="dropdownSize">
                     <option selected> Chose Size </option>
 
                     <!--Sizes available for every chosen material type have to be shown from data base
-                    Size in dropdown list = size in db where id "dropdownType" chosen == Type ==> list of sizes -->
-
-
+                Size in dropdown list = size in db where id "dropdownType" chosen == Type ==> list of sizes -->
 
 
                 </select>
             </div>
+
             <div class="col">
                 <!-- PieceSize - system shows from data base according to type and size chosen -->
 
 
-
                 <p class="text-sm-center" id="pieceSize"> 0 </p>
             </div>
+
             <div class="col text-center" width="11%">
                 <!-- pieces - user inputs number of pieces -->
                 <input type="number" class="text-sm-center" id="numberOfPieces" name="quantity" min="1" max="200">
             </div>
+
             <div class="col" width="11%">
                 <!-- m2 or m - system calculates total amount of material m or m2 -->
                 <p class="text-sm-center" id="totalAmountOfUnits"> 0 </p>
             </div>
+
             <div class="col" width="12%">
                 <!-- kg - system calculates amount of material kg -->
                 <p class="text-sm-center" id="weightPerRow"> 0 </p>
             </div>
+
             <div class="col" width="12%">
                 <!-- EUR/tn - user inputs price of material EUR/tn -->
                 <input type="number" class="text-sm-center" id="pricePerTon" name="quantity" min="1" max="15000">
             </div>
+
             <div class="col" width="12%">
                 <!-- EUR - system calculates total EUR per material amount -->
                 <p class="text-sm-center" id="sumTotalEur"> 0 </p>
@@ -105,10 +106,62 @@
 
         </div>
 
-        <div class="row pt-4">
-            <div class="col-12 text-right">  
-                <a asp-controller="Material" asp-action="" class="btn btn-success">New row</a>
-            </div>            
+        <div class="row">
+
+            <div class="col text-left" width="15%">
+                <p class="text-sm-center">
+                    <a asp-controller="Material" asp-action="" class="btn btn-success">New row</a>
+                </p>
+            </div>
+            <div class="col" width="15%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="11%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="11%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center">TOTAL: </p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center font-weight-bold" id="totalTons">0.00</p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center font-weight-bold" id="totalEUR">0.00</p>
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col text-left" width="15%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="15%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="11%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="11%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center font-weight-bold" id="percentsLoaded">0.00 %</p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center"></p>
+            </div>
+            <div class="col" width="12%">
+                <p class="text-sm-center" ></p>
+            </div>
         </div>
         <br />
 
