@@ -7,9 +7,10 @@
 <script>
 	function GetDropDownVal() {
         $.ajax({
-            url: 'Material/GetValue',
+            url: 'Material/GetValue',//1.Controller/2.Controller method/action
             type: 'POST',
-            data: 'test',
+			data: {'type': $( "#dropdownType option:selected" ).val()},
+			dataType: 'json',
             error: function (xhr) {	
 				alert('Error');
             },
@@ -72,7 +73,7 @@
 						{
 							@if (Model[i] != Model[i + 1])
 							{
-								<option value="@i">@Model[i]</option>
+								<option value="@Model[i]">@Model[i]</option>
 							}
 						}
 
