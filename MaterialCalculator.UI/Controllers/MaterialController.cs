@@ -58,5 +58,10 @@ namespace MaterialCalculator.UI.Controllers
             return View(materialModel);
         }
 
+        [HttpPost]
+        public List<string> GetValue(string data)
+        {
+            return new List<string>() { "1", "2", "3", "4", "5" };
+        }
     }
 }
