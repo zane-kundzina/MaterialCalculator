@@ -9,10 +9,13 @@ using System.Threading.Tasks;
 namespace MaterialCalculator.DAL.Context
 {
     public class MaterialCalculatorDBContext: DbContext
-    {
-        public DbSet<MaterialDto> Materials { get; set; }
+    {       
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=MaterialsDB");
+
+        public DbSet<MaterialDto> Materials { get; set; }
+        public DbSet<SupplierDto> Suppliers { get; set; }
+        public DbSet<OrderListDto> OrderList { get; set; }
     }
 }

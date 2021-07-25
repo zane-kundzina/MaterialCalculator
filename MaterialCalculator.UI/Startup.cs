@@ -56,10 +56,10 @@ namespace MaterialCalculator.UI
                     pattern: "{controller=Material}/{action=Index}");                    
             });
 
-            using (var context = new MaterialCalculatorDBContext())
-            {
-                context.Database.EnsureCreated();
-            }
+            //using (var context = new MaterialCalculatorDBContext())
+            //{
+            //    context.Database.EnsureCreated();
+            //}
         }
     }
 }

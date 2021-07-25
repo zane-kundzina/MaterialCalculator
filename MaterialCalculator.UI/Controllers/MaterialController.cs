@@ -152,7 +152,5 @@ namespace MaterialCalculator.UI.Controllers
             return isLoadFull;
         }
 
-
-
     }
 }
