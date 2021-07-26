@@ -59,11 +59,12 @@ namespace MaterialCalculator.UI.Controllers
         }
 
         [HttpPost]
-        public List<string> GetValue(string type)
+        public List<string> GetMaterialSizes ( string type)
         {
             var materialCalc = new MaterialCalculatorActions();
-            //var size = materialCalc.GetPieceSize(data);
-            return new List<string>() { "1", "2", "3", "4", "5" };
+            var sizes = materialCalc.GetMaterialSizes(type);
+
+            return sizes;
         }
     }
 }

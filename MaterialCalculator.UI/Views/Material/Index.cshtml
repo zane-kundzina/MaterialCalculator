@@ -5,9 +5,9 @@
 }
 
 <script>
-	function GetDropDownVal() {
+	function GetDropDownType() {
         $.ajax({
-            url: 'Material/GetValue',//1.Controller/2.Controller method/action
+            url: 'Material/GetMaterialSizes',//1.Controller/2.Controller method/action
             type: 'POST',
 			data: {'type': $( "#dropdownType option:selected" ).val()},
 			dataType: 'json',
@@ -64,7 +64,7 @@
    <div class="col" width="15%">
 	<!-- Material Type selection cell -->
 	<select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownType"
-						onchange="GetDropDownVal()">
+						onchange="GetDropDownType()">
 	 <option selected> Chose Type </option>
 	 <!-- list of types from db in dropdown list -->
 					@if (Model != null)

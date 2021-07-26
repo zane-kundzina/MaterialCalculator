@@ -46,13 +46,12 @@ namespace MaterialCalculator.DAL
 
             foreach (var m in materials)
             {
-                var material = materials.FirstOrDefault(m => m.Type == type);
+                var material = materials.Where(m => m.Type == type).FirstOrDefault();
                 var size = material.Size;
                 sizes.Add(size);
             }
 
             return sizes;
-
         }
 
         public double GetPieceSize(string type)   // type should be get from dropdown list "Type" - what user has chosen
