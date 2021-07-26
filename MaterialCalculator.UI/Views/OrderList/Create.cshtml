@@ -29,8 +29,8 @@
                         <span asp-validation-for="OrderedBy" class="text-danger"></span>
                     </div>
                     <div class="col-4">
-                        <select asp-for="SupplierId" asp-items="@Model.TypeDropDown" class="form-control" >
-                            <option selected>--Select Expense Type--</option>
+                        <select asp-for="SupplierId" asp-items="@ViewBag.TypeDropDown" class="form-control" >
+                            <option selected>--Select Supplier--</option>
                         </select>
                         <span asp-validation-for="SupplierId" class="text-danger"></span>
                     </div>
