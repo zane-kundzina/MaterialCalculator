@@ -18,5 +18,9 @@ namespace MaterialCalculator.DAL.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
             optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb; Database=MaterialsDB");
+
+        public DbSet<MaterialDto> Materials { get; set; }
+        public DbSet<SupplierDto> Suppliers { get; set; }
+        public DbSet<OrderListDto> OrderList { get; set; }
     }
 }

@@ -11,16 +11,13 @@ namespace MaterialCalculator.BLL
 {
     public class MaterialCalculatorActions
     {
-        // place for logic; entity objects are used in BLL; methods  
+        // place for logic; entity objects are used in BLL; methods 
 
-        
-        
-
-        public List<string> GetMaterialType()
+        public List<string> GetMaterialTypes()
         {
             var repo = new MaterialCalculatorRepository();    
 
-            return repo.GetMaterialType();            
+            return repo.GetMaterialTypes();            
         }
 
         public List<string> GetMaterialSizes(string type)   // type should be get from dropdown list "Type" - what user has chosen; how to point to it?

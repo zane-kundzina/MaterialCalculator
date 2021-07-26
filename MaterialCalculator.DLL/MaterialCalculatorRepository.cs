@@ -14,21 +14,22 @@ namespace MaterialCalculator.DAL
 
         public double maxLoadWeight { get; set; } = 24;
 
-        public List<string> GetMaterialType()
+        public List<string> GetMaterialTypes()
         {
             List<string> types = new List<string>();
-
             List<MaterialDto> materials;
 
             using (var context = new MaterialCalculatorDBContext())
             {
-                materials = context.Materials.ToList();
-                
+                materials = context.Materials.ToList();                
             }
 
-            foreach (var item in materials)
+            for (int i = 0; i < materials.Count - 1; i++)
             {
-                types.Add(item.Type);
+                if (materials[i] != materials[i + 1])
+                {
+                    types.Add(materials[i].Type);
+                }
             }
 
             return types;

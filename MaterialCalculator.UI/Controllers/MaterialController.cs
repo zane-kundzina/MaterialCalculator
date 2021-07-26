@@ -16,7 +16,7 @@ namespace MaterialCalculator.UI.Controllers
         {
             var actions = new MaterialCalculatorActions();
 
-            var listOfTypes = actions.GetMaterialType();  
+            var listOfTypes = actions.GetMaterialTypes();  
 
             return View(listOfTypes);
         }
@@ -56,6 +56,100 @@ namespace MaterialCalculator.UI.Controllers
             //materialModel.WeightPerUnitKg = materialActions.GetKgPerUnit(materialDto.Type, materialDto.Size);
 
             return View(materialModel);
+        }
+
+        [HttpPost]
+        public List<string> GetMaterialTypes()
+        {
+            var actions = new MaterialCalculatorActions();
+
+            var listOfTypes = actions.GetMaterialTypes();
+
+            return listOfTypes;
+        }
+
+        [HttpPost]
+        public List<string> GetMaterialSizes(string type)   // argument should be passed from dropdown list "Types"
+        {
+            var actions = new MaterialCalculatorActions();           
+
+            var listOfSizes = actions.GetMaterialSizes(type);
+
+            return listOfSizes;
+
+            //var size = materialCalculator.GetPieceSize(data);
+            //return new List<string>() { "1", "2", "3", "4", "5" };
+        }
+
+        [HttpPost]
+        public double GetPieceSize(string type)   // argument should be passed from dropdown list "Types"
+        {
+            var actions = new MaterialCalculatorActions();           
+
+            var pieceSize = actions.GetPieceSize(type);
+
+            return pieceSize;
+
+        }
+
+        [HttpPost]
+        public double CalculateAmountOfMaterialUnits(string type, string size)
+        {
+            var actions = new MaterialCalculatorActions();
+
+            var numberOfMaterialUnits = actions.CalculateAmountOfMaterialUnits(type, size);
+
+            return numberOfMaterialUnits;
+        }
+
+        [HttpPost]
+        public double CalculateMaterialWeight(string type, string size)
+        {
+            var actions = new MaterialCalculatorActions();
+
+            var materialWeight = actions.CalculateMaterialWeight(type, size);
+
+            return materialWeight;
+        }
+
+        [HttpPost]
+        public double CalculateMaterialCost(string type, string size)
+        {
+            var actions = new MaterialCalculatorActions();
+
+            var materialCost = actions.CalculateMaterialCost(type, size);
+
+            return materialCost;
+        }
+
+        [HttpPost]
+        public double CalculateTotalWeight(List<double> materialWeightsPerRow)
+        {
+            var actions = new MaterialCalculatorActions();
+
+            var totalWeight = actions.CalculateTotalWeight(materialWeightsPerRow);
+
+            return totalWeight;
+        }
+
+        [HttpPost]
+        public double CalculatePercentageOfLoad(List<double> materialWeightsPerRow)
+        {
+            var actions = new MaterialCalculatorActions();
+
+            var percentageOfLoad = actions.CalculatePercentageOfLoad(materialWeightsPerRow);
+
+            return percentageOfLoad;
+        }
+
+        [HttpPost]
+        public string IsLoadFull(List<double> materialWeightsPerRow)
+        {
+            var actions = new MaterialCalculatorActions();
+
+            var isLoadFull = actions.IsLoadFull(materialWeightsPerRow);
+
+            return isLoadFull;
         }
 
         [HttpPost]
