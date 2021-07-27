@@ -29,18 +29,15 @@ namespace MaterialCalculator.UI.Controllers
             {
                 // Type and size should be get from user input fro UI and according to this data from data base should be collected -
                 // PieceSize, WeightPerUnitKg;
-                Type = type,
-                Size = size     // sizes are offered in dropdown list according to type chosen...
+                Type = type    // sizes are offered in dropdown list according to type chosen...
             };
 
             MaterialDto materialDto = new MaterialDto()
             {
                 Id = materialModel.Id,
                 Type = materialModel.Type,
-                Size = materialModel.Size,
                 PieceSize = materialModel.PieceSize,
                 WeightPerUnit = materialModel.WeightPerUnit
-
             };
 
             MaterialCalculatorActions materialActions = new MaterialCalculatorActions();            
@@ -150,15 +147,6 @@ namespace MaterialCalculator.UI.Controllers
             var isLoadFull = actions.IsLoadFull(materialWeightsPerRow);
 
             return isLoadFull;
-        }
-
-        [HttpPost]
-        public List<string> GetMaterialSizes ( string type)
-        {
-            var materialCalc = new MaterialCalculatorActions();
-            var sizes = materialCalc.GetMaterialSizes(type);
-
-            return sizes;
         }
     }
 }

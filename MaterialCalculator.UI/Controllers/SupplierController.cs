@@ -21,8 +21,8 @@ namespace MaterialCalculator.UI.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<SupplierDto> objList = _db.Suppliers;
-            return View(objList);
+            //IEnumerable<SupplierDto> objList = _db.Suppliers;
+            return View();
 
         }
 
@@ -39,7 +39,7 @@ namespace MaterialCalculator.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Suppliers.Add(obj);
+                //_db.Suppliers.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -56,12 +56,12 @@ namespace MaterialCalculator.UI.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Suppliers.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
+            //var obj = _db.Suppliers.Find(id);
+            //if (obj == null)
+            //{
+            //    return NotFound();
+            //}
+            return View();
 
         }
 
@@ -70,13 +70,13 @@ namespace MaterialCalculator.UI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.Suppliers.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
+            //var obj = _db.Suppliers.Find(id);
+            //if (obj == null)
+            //{
+            //    return NotFound();
+            //}
 
-            _db.Suppliers.Remove(obj);
+            //_db.Suppliers.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
 
@@ -90,12 +90,12 @@ namespace MaterialCalculator.UI.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.Suppliers.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
+            //var obj = _db.Suppliers.Find(id);
+            //if (obj == null)
+            //{
+            //    return NotFound();
+            //}
+            return View();
 
         }
 
@@ -106,7 +106,7 @@ namespace MaterialCalculator.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Suppliers.Update(obj);
+                //_db.Suppliers.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }

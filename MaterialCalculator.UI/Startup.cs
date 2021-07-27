@@ -30,6 +30,7 @@ namespace MaterialCalculator.UI
             //);
 
             services.AddControllersWithViews();
+            services.AddRazorPages ().AddRazorRuntimeCompilation ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,10 +57,10 @@ namespace MaterialCalculator.UI
                     pattern: "{controller=Material}/{action=Index}");                    
             });
 
-            //using (var context = new MaterialCalculatorDBContext())
-            //{
-            //    context.Database.EnsureCreated();
-            //}
+            using ( var context = new MaterialCalculatorDBContext () )
+            {
+                context.Database.EnsureCreated ();
+            }
         }
     }
 }

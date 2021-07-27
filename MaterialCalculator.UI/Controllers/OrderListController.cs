@@ -22,26 +22,26 @@ namespace MaterialCalculator.UI.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<OrderListDto> objList = _db.OrderList;
+            //IEnumerable<OrderListDto> objList = _db.OrderList;
 
-            foreach (var obj in objList)
-            {
-                obj.Supplier = _db.Suppliers.FirstOrDefault(u => u.Id == obj.SupplierId);
-            }
+            //foreach (var obj in objList)
+            //{
+            //    obj.Supplier = _db.Suppliers.FirstOrDefault(u => u.Id == obj.SupplierId);
+            //}
 
-            return View(objList);
+            return View();
         }
 
         // GET-Create
         public IActionResult Create()
         {
-            IEnumerable<SelectListItem> TypeDropDown = _db.OrderList.Select(i => new SelectListItem
-            {
-                Text = i.OrderNumber,
-                Value = i.Id.ToString()
-            });
+            //IEnumerable<SelectListItem> TypeDropDown = _db.OrderList.Select(i => new SelectListItem
+            //{
+            //    Text = i.OrderNumber,
+            //    Value = i.Id.ToString()
+            //});
 
-            ViewBag.TypeDropDown = TypeDropDown;           
+            //ViewBag.TypeDropDown = TypeDropDown;           
 
             return View();
         }
@@ -53,7 +53,7 @@ namespace MaterialCalculator.UI.Controllers
         {
             if (ModelState.IsValid)
             {                
-                _db.OrderList.Add(obj);
+                //.OrderList.Add(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -68,12 +68,12 @@ namespace MaterialCalculator.UI.Controllers
             {
                 return NotFound();
             }
-            var obj = _db.OrderList.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
+            //var obj = _db.OrderList.Find(id);
+            //if (obj == null)
+            //{
+            //    return NotFound();
+            //}
+            return View();
 
         }
 
@@ -82,13 +82,13 @@ namespace MaterialCalculator.UI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePost(int? id)
         {
-            var obj = _db.OrderList.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
+            //var obj = _db.OrderList.Find(id);
+            ////if (obj == null)
+            ////{
+            ////    return NotFound();
+            ////}
 
-            _db.OrderList.Remove(obj);
+            //.OrderList.Remove(obj);
             _db.SaveChanges();
             return RedirectToAction("Index");
 
@@ -102,12 +102,12 @@ namespace MaterialCalculator.UI.Controllers
                 return NotFound();
             }
 
-            var obj = _db.OrderList.Find(id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            return View(obj);
+            //var obj = _db.OrderList.Find(id);
+            ////if (obj == null)
+            ////{
+            ////    return NotFound();
+            ////}
+            return View();
         }
 
         // POST UPDATE
@@ -117,7 +117,7 @@ namespace MaterialCalculator.UI.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.OrderList.Update(obj);
+                //_db.OrderList.Update(obj);
                 _db.SaveChanges();
                 return RedirectToAction("Index");
             }
