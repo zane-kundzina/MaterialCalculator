@@ -59,13 +59,15 @@ namespace MaterialCalculator.UI.Controllers
         }
 
         [HttpPost]
-        public MaterialDataViewModel GetMaterialSizes(string type)   // argument should be passed from dropdown list "Types"
+        public MaterialDataViewModel GetMaterialSizes(string type, string size)   // argument should be passed from dropdown list "Types"
         {
             var actions = new MaterialCalculatorActions();
 
             var materialData = new MaterialDataViewModel();
 
             var listOfSizes = actions.GetMaterialSizes(type);
+
+            var pieceSize = actions.GetPieceSize(type);
 
             materialData.Sizes = listOfSizes;
 
@@ -75,7 +77,8 @@ namespace MaterialCalculator.UI.Controllers
         [HttpPost]
         public double GetPieceSize(string type)   // argument should be passed from dropdown list "Types"
         {
-            var actions = new MaterialCalculatorActions();           
+            var actions = new MaterialCalculatorActions(); 
+            
 
             var pieceSize = actions.GetPieceSize(type);
 

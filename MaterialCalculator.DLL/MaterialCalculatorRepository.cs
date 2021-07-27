@@ -63,10 +63,11 @@ namespace MaterialCalculator.DAL
 
         public double GetPieceSize ( string type )   // type should be get from dropdown list "Type" - what user has chosen
         {
-            List<MaterialTypesDto> materials;
+            var pieceSize = 0;
 
             using ( var context = new MaterialCalculatorDBContext () )
             {
+
                 //materials = context.MaterialTypes.Select(x => x.TypeName == type ).ToList ();
             }
 

@@ -9,7 +9,7 @@
         $.ajax({
             url: 'Material/GetMaterialSizes',//1.Controller/2.Controller method/action
             type: 'POST',
-            data: { 'type': $("#dropdownType option:selected").val() },
+            data: { 'type': $("#dropdownType option:selected").val(), 'size': $('#dropdownSize option:selected')  },
             dataType: 'json',
             error: function (xhr) {
                 alert('Error');
