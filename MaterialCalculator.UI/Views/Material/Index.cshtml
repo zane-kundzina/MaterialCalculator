@@ -9,7 +9,7 @@
         $.ajax({
             url: 'Material/GetMaterialSizes',//1.Controller/2.Controller method/action
             type: 'POST',
-            data: { 'type': $("#dropdownType option:selected").val(), 'size': $('#dropdownSize option:selected')  },
+            data: { 'type': $("#dropdownType option:selected").val(), 'size': $('#dropdownSize option:selected').val()},
             dataType: 'json',
             error: function (xhr) {
                 alert('Error');
@@ -22,7 +22,8 @@
                         select[i].remove();
                     };
 
-                    $('#dropdownSize').append('<option value="' + item + '">' + item + '</option>');
+                        $('#dropdownSize').append('<option value="' + item + '">' + item + '</option>');
+                        $("#pieceSize").val()
                     });
                 }
                 else if (select[1] != undefined )
@@ -96,7 +97,7 @@
 
 
 
-                <p class="text-sm-center" id="pieceSize"> 0 </p>
+                <p class="text-sm-center" id="pieceSize"> @Model.PieceSize </p>
             </div>
             <div class="col text-center" width="11%">
                 <!-- pieces - user inputs number of pieces -->

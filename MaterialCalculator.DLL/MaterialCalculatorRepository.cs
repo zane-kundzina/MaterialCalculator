@@ -61,20 +61,25 @@ namespace MaterialCalculator.DAL
             return sizes;
         }
 
-        public double GetPieceSize ( string type )   // type should be get from dropdown list "Type" - what user has chosen
+        public double GetPieceSize ( string type, string size )   // type should be get from dropdown list "Type" - what user has chosen
         {
-            var pieceSize = 0;
+            
+            //var materialSizes = new MaterialSizesDto();
+            var materialTypes = new MaterialTypesDto();
+            var materials = new MaterialDto();
+            var pieceSize = new PieceSizesDto();
 
             using ( var context = new MaterialCalculatorDBContext () )
             {
-
-                //materials = context.MaterialTypes.Select(x => x.TypeName == type ).ToList ();
+                materialTypes = context.MaterialTypes.Where(x => x.TypeName == type).FirstOrDefault();
+                materials = context.Materials.Where(x => x.TypeId == materialTypes.Id).FirstOrDefault();
+                pieceSize = context.PieceSizes.Where(x => x.Material.Id == materials.Id).FirstOrDefault();
             }
 
             //var material = materials.FirstOrDefault ( m => m.Type == type );
             //var pieceSize = material.PieceSize;
 
-            return 0;
+            return pieceSize.PieceSize;
         }
 
         public double GetWeightPerUnit ( string type, string size )   // type and size should be get from dropdown list "Type" & "Size" - what user has chosen
@@ -109,7 +114,7 @@ namespace MaterialCalculator.DAL
         {
             // according to material.Type and material.Size choice and number of pieces input from UI,method have to calculate total amount of units (m/m2)
 
-            var pieceSize = GetPieceSize ( type );
+            var pieceSize = GetPieceSize ( type, size );
             var amountOfMaterialUnits = pieceSize * GetNumberOfPieces ();
 
             return amountOfMaterialUnits;

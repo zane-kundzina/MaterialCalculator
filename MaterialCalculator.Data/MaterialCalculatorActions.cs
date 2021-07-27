@@ -27,13 +27,13 @@ namespace MaterialCalculator.BLL
             return repo.GetMaterialSizes(type);            
         }
 
-        public double GetPieceSize(string type)     // type should be get from dropdown list "Type" - what user has chosen; how to point to it?
+        public double GetPieceSize(string type, string size)     // type should be get from dropdown list "Type" - what user has chosen; how to point to it?
         {
             // according to material.Type choice from UI, method have to offer piece size for this material type from data base
 
             var repo = new MaterialCalculatorRepository();
 
-            return repo.GetPieceSize(type);
+            return repo.GetPieceSize(type, size);
             // pieceSize should be displayed in UI for material type chosen - how to do it?
             // how to do it?
         }

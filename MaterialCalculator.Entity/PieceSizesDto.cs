@@ -9,7 +9,7 @@ namespace MaterialCalculator.Entity
     public class PieceSizesDto
     {
         public int Id { get; set; }
-        public string PieceSizeName { get; set; }
+        public double PieceSize { get; set; }
 
         public MaterialDto Material { get; set; }
     }
