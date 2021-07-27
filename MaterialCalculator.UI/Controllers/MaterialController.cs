@@ -15,45 +15,38 @@ namespace MaterialCalculator.UI.Controllers
         public IActionResult Index()
         {
             var actions = new MaterialCalculatorActions();
+            var materialData = new MaterialDataViewModel();
 
-            var listOfTypes = actions.GetMaterialTypes();  
+            var listOfTypes = actions.GetMaterialTypes();
 
-            return View(listOfTypes);
+            materialData.Types = listOfTypes;
+
+            return View(materialData);
         }
 
-        public IActionResult GetMaterialInfo(string type, string size)
-        {
-            // code according to AnimalEngine example....
+        //public IActionResult GetMaterialInfo(string type, string size)
+        //{   
+        //    MaterialViewModel materialModel = new MaterialViewModel()
+        //    {                
+        //        Type = type    
+        //    };
 
-            MaterialViewModel materialModel = new MaterialViewModel()
-            {
-                // Type and size should be get from user input fro UI and according to this data from data base should be collected -
-                // PieceSize, WeightPerUnitKg;
-                Type = type    // sizes are offered in dropdown list according to type chosen...
-            };
+        //    MaterialDto materialDto = new MaterialDto()
+        //    {
+        //        Id = materialModel.Id,
+        //        Type = materialModel.Type,
+        //        PieceSize = materialModel.PieceSize,
+        //        WeightPerUnit = materialModel.WeightPerUnit
+        //    };
 
-            MaterialDto materialDto = new MaterialDto()
-            {
-                Id = materialModel.Id,
-                Type = materialModel.Type,
-                PieceSize = materialModel.PieceSize,
-                WeightPerUnit = materialModel.WeightPerUnit
-            };
-
-            MaterialCalculatorActions materialActions = new MaterialCalculatorActions();            
+        //    MaterialCalculatorActions materialActions = new MaterialCalculatorActions(); 
             
-            // is Id necessary at all in this case?
-            //materialModel.Id = materialActions.GetMaterialId(materialDto.Type, materialDto.Size);
+        //    var sizes = materialActions.GetMaterialSizes(materialModel.Type);
             
-            var sizes = materialActions.GetMaterialSizes(materialModel.Type);
-            // materialModel.Size = one from dropdown List "Size" that user choses;
-
-            materialModel.PieceSize = materialActions.GetPieceSize(materialModel.Type);
-
-            //materialModel.WeightPerUnitKg = materialActions.GetKgPerUnit(materialDto.Type, materialDto.Size);
-
-            return View(materialModel);
-        }
+        //    materialModel.PieceSize = materialActions.GetPieceSize(materialModel.Type);
+                       
+        //    return View(materialModel);
+        //}
 
         [HttpPost]
         public List<string> GetMaterialTypes()
@@ -66,16 +59,17 @@ namespace MaterialCalculator.UI.Controllers
         }
 
         [HttpPost]
-        public List<string> GetMaterialSizes(string type)   // argument should be passed from dropdown list "Types"
+        public MaterialDataViewModel GetMaterialSizes(string type)   // argument should be passed from dropdown list "Types"
         {
-            var actions = new MaterialCalculatorActions();           
+            var actions = new MaterialCalculatorActions();
+
+            var materialData = new MaterialDataViewModel();
 
             var listOfSizes = actions.GetMaterialSizes(type);
 
-            return listOfSizes;
+            materialData.Sizes = listOfSizes;
 
-            //var size = materialCalculator.GetPieceSize(data);
-            //return new List<string>() { "1", "2", "3", "4", "5" };
+            return materialData;            
         }
 
         [HttpPost]

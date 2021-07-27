@@ -1,4 +1,4 @@
-﻿@model List<string>
+﻿@model MaterialCalculator.UI.Models.MaterialDataViewModel
 
 @{
     ViewData["Title"] = "Home Page";
@@ -16,13 +16,13 @@
             },
             success: function (result) {
                 var select = $("#dropdownSize option");
-                result.forEach(function (item) {
-                    for (var i = 1; i < select.length; i++) {
-                        select[i].remove();
-                    };
+                //result.forEach(function (item) {
+                //    for (var i = 1; i < select.length; i++) {
+                //        select[i].remove();
+                //    };
 
-                    $('#dropdownSize').append('<option value="' + item + '">' + item + '</option>');
-                });
+                //    $('#dropdownSize').append('<option value="' + item + '">' + item + '</option>');
+                //});
             }
         });
     }
@@ -70,11 +70,11 @@
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownType" onchange="GetMaterialSizes()">
                     <option selected> Chose Type </option>
                     <!-- list of types from db in dropdown list -->
-                    @if (Model != null)
+                    @if (Model != null && Model.Types != null)
                     {
-                        @for (int i = 0; i < Model.Count; i++)
+                        @for (int i = 0; i < Model.Types.Count; i++)
                         {
-                            <option value="@Model[i]">@Model[i]</option>
+                            <option value="@Model.Types[i]">@Model.Types[i]</option>
                         }
                     }
                 </select>
@@ -84,8 +84,13 @@
                 <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="dropdownSize">
                     <option selected> Chose Size </option>
 
-                    <!--Sizes available for every chosen material type have to be shown from data base
-                Size in dropdown list = size in db where id "dropdownType" chosen == Type ==> list of sizes -->
+                    @if (Model != null && Model.Sizes != null)
+                    {
+                        @for (int i = 0; i < Model.Sizes.Count; i++)
+                        {
+                            <option value="@Model.Sizes[i]">@Model.Sizes[i]</option>
+                        }
+                    }
 
 
 

@@ -10,8 +10,12 @@ namespace MaterialCalculator.DAL.Context
 {
     public class MaterialCalculatorDBContext: DbContext
     {
-        public DbSet<MaterialSizesDto> MaterialSizes { get; set; }
+        //public DbSet<MaterialSizesDto> MaterialSizes { get; set; }
         public DbSet<MaterialDto> Materials { get; set; }
+
+        public DbSet<MaterialTypesDto> MaterialTypes { get; set; }
+
+        public DbSet<MaterialSizesDto> PieceSizes { get; set; }
               
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>

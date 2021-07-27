@@ -51,7 +51,9 @@ namespace MaterialCalculator.DAL
             {
                 //materials = context.Materials.ToList ();
 
-                sizes = context.MaterialSizes.Where ( x => x.Material.Type == type )
+                var materialType = context.MaterialTypes.Where(x => x.TypeName == type).FirstOrDefault();
+
+                sizes = context.Materials.Where ( x => x.TypeId == materialType.Id )
                     .Select ( x => x.Size ).ToList ();
                 
             }
@@ -79,17 +81,17 @@ namespace MaterialCalculator.DAL
             List<MaterialDto> materials;
             List<MaterialSizesDto> materialSizes;
 
-            using ( var context = new MaterialCalculatorDBContext () )
-            {
-                materials = context.Materials.ToList ();
-                materialSizes = context.MaterialSizes.ToList ();
-            }
+            //using ( var context = new MaterialCalculatorDBContext () )
+            //{
+            //    materials = context.Materials.ToList ();
+            //    materialSizes = context.MaterialSizes.ToList ();
+            //}
 
-            var material = materials.Where ( m => m.Type == type ).FirstOrDefault ();
+            //var material = materials.Where ( m => m.Type == type ).FirstOrDefault ();
 
-            var weightPerUnit = material.WeightPerUnit;
+            //var weightPerUnit = material.WeightPerUnit;
 
-            return weightPerUnit;
+            return 0;
         }
 
         public double GetNumberOfPieces ()
