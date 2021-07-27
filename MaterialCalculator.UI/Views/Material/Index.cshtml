@@ -6,6 +6,12 @@
 
 <script>
     function GetMaterialSizes() {
+
+        var data = { 
+                    'type' : $("#dropdownType option:selected").val(), 
+                    'size' : $('#dropdownSize option:selected').val()
+                  };
+
         $.ajax({
             url: 'Material/GetMaterialSizes',//1.Controller/2.Controller method/action
             type: 'POST',
