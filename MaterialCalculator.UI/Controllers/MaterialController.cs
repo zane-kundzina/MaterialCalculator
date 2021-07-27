@@ -69,7 +69,7 @@ namespace MaterialCalculator.UI.Controllers
 
             materialData.Sizes = listOfSizes;
 
-            return materialData;            
+            return materialData;
         }
 
         [HttpPost]

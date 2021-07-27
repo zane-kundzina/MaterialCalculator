@@ -17,30 +17,30 @@ namespace MaterialCalculator.DAL
         {
             using(var context = new MaterialCalculatorDBContext () )
             {
-                return context.Materials.Select ( x => x.Type ).ToList();
+                return context.MaterialTypes.Select ( x => x.TypeName ).ToList();
             }
         }
 
-        public List<string> GetMaterialTypes1 ()
-        {
-            List<string> types = new List<string> ();
-            List<MaterialDto> materials;
+        //public List<string> GetMaterialTypes1 ()
+        //{
+        //    List<string> types = new List<string> ();
+        //    List<MaterialDto> materials;
 
-            using ( var context = new MaterialCalculatorDBContext () )
-            {
-                materials = context?.Materials?.ToList ();
-            }
+        //    using ( var context = new MaterialCalculatorDBContext () )
+        //    {
+        //        materials = context?.Materials?.ToList ();
+        //    }
 
-            for ( int i = 0; i < materials.Count - 1; i++ )
-            {
-                if ( materials [i] != materials [i + 1] )
-                {
-                    types.Add ( materials [i].Type );
-                }
-            }
+        //    for ( int i = 0; i < materials.Count - 1; i++ )
+        //    {
+        //        if ( materials [i] != materials [i + 1] )
+        //        {
+        //            types.Add ( materials [i].Type );
+        //        }
+        //    }
 
-            return types;
-        }
+        //    return types;
+        //}
 
         public List<string> GetMaterialSizes ( string type )   // type should be get from dropdown list "Type" - what user has chosen
         {
@@ -63,17 +63,17 @@ namespace MaterialCalculator.DAL
 
         public double GetPieceSize ( string type )   // type should be get from dropdown list "Type" - what user has chosen
         {
-            List<MaterialDto> materials;
+            List<MaterialTypesDto> materials;
 
             using ( var context = new MaterialCalculatorDBContext () )
             {
-                materials = context.Materials.ToList ();
+                //materials = context.MaterialTypes.Select(x => x.TypeName == type ).ToList ();
             }
 
-            var material = materials.FirstOrDefault ( m => m.Type == type );
-            var pieceSize = material.PieceSize;
+            //var material = materials.FirstOrDefault ( m => m.Type == type );
+            //var pieceSize = material.PieceSize;
 
-            return pieceSize;
+            return 0;
         }
 
         public double GetWeightPerUnit ( string type, string size )   // type and size should be get from dropdown list "Type" & "Size" - what user has chosen
@@ -123,16 +123,16 @@ namespace MaterialCalculator.DAL
                 materials = context.Materials.ToList ();
             }
 
-            var material = materials.FirstOrDefault ( m => m.Type == type );
+            //var material = materials.FirstOrDefault ( m => m.Type == type );
 
             double amountOfMaterialUnits = CalculateAmountOfMaterialUnits ( type, size );
 
-            double materialWeight = amountOfMaterialUnits * material.WeightPerUnit / 1000;
+            //double materialWeight = amountOfMaterialUnits * material.WeightPerUnit / 1000;
 
             // this weight per each row should be added to total material weight;
-            materialWeightsPerRow.Add ( materialWeight );
+            materialWeightsPerRow.Add ( 0 );
 
-            return materialWeight;
+            return 0;
         }
 
         public double CalculateTotalWeight ( List<double> materialWeightsPerRow )
