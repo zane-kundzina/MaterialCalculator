@@ -48,13 +48,13 @@ namespace MaterialCalculator.BLL
             return repo.GetNumberOfPieces();
         }
 
-        public double GetWeightPerUnit(string type, string size)    // type & size should be get from dropdown list "Type" & "Size" - what user has chosen; how to point to it?
-        {
-            // according to material.Type and material.Size choice from UI, method have to find weight of this material per unit from data base
-            var repo = new MaterialCalculatorRepository();
+        //public double GetWeightPerUnit(string type, string size)    // type & size should be get from dropdown list "Type" & "Size" - what user has chosen; how to point to it?
+        //{
+        //    // according to material.Type and material.Size choice from UI, method have to find weight of this material per unit from data base
+        //    var repo = new MaterialCalculatorRepository();
 
-            return repo.GetWeightPerUnit(type, size);
-        }
+        //    return repo.GetWeightPerUnit(type, size);
+        //}
 
         public double CalculateAmountOfMaterialUnits(string type, string size)  // type & size should be get from dropdown list "Type" & "Size" - what user has chosen; how to point to it?
         {

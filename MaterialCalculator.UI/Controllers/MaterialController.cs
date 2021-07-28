@@ -98,6 +98,16 @@ namespace MaterialCalculator.UI.Controllers
             return numberOfMaterialUnits;
         }
 
+        //[HttpPost]
+        //public double GetWeightPerUnit(string type, string size)
+        //{
+        //    var actions = new MaterialCalculatorActions();
+
+        //    var weightPerUnit = actions.GetWeightPerUnit(type, size);
+
+        //    return weightPerUnit;
+        //}
+
         [HttpPost]
         public double CalculateMaterialWeight(string type, string size)
         {
